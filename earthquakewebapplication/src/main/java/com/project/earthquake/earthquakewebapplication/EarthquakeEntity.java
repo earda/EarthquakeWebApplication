@@ -2,67 +2,67 @@ package com.project.earthquake.earthquakewebapplication;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.sql.Time;
-import java.text.DateFormat;
-import java.util.Timer;
-
 public class EarthquakeEntity {
+    @JsonProperty
+    private  String country;
+    @JsonProperty
+    private  String location;
+    @JsonProperty
+    private  String magnitude;
+    @JsonProperty
+    private String date;
 
-    private  String catalogs;
+    @JsonProperty
+    private String time;
 
-    private  String contributors;
-
-    private  String producttypes;
-
-    private  String eventtypes;
-
-    private  String magnitudetypes;
-
-    public EarthquakeEntity(String catalogs, String contributors, String producttypes, String eventtypes, String magnitudetypes) {
-        this.catalogs = catalogs;
-        this.contributors = contributors;
-        this.producttypes = producttypes;
-        this.eventtypes = eventtypes;
-        this.magnitudetypes = magnitudetypes;
+    public EarthquakeEntity() {
     }
 
-    public String getCatalogs() {
-        return catalogs;
+
+    public EarthquakeEntity(String country, String location, String magnitude, String date, String time) {
+        this.country = country;
+        this.location = location;
+        this.magnitude = magnitude;
+        this.date = date;
+        this.time = time;
     }
 
-    public void setCatalogs(String catalogs) {
-        this.catalogs = catalogs;
+    public String getCountry() {
+        return country;
     }
 
-    public String getContributors() {
-        return contributors;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public void setContributors(String contributors) {
-        this.contributors = contributors;
+    public String getLocation() {
+        return location;
     }
 
-    public String getProducttypes() {
-        return producttypes;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public void setProducttypes(String producttypes) {
-        this.producttypes = producttypes;
+    public String getDate() {
+        return date;
     }
 
-    public String getEventtypes() {
-        return eventtypes;
+    public void setDate(String date) {
+        this.date = date ;
     }
 
-    public void setEventtypes(String eventtypes) {
-        this.eventtypes = eventtypes;
+    public String getTime() {
+        return time;
     }
 
-    public String getMagnitudetypes() {
-        return magnitudetypes;
+    public void setTime(String time) {
+        this.time = time;
+    }
+    public String getMagnitude() {
+        return magnitude;
     }
 
-    public void setMagnitudetypes(String magnitudetypes) {
-        this.magnitudetypes = magnitudetypes;
+    public void setMagnitude(String magnitude) {
+        this.magnitude = magnitude;
     }
 }

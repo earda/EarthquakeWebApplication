@@ -1,27 +1,30 @@
 package com.project.earthquake.earthquakewebapplication.controller;
 
-import org.json.JSONObject;
-import org.apache.commons.io.IOUtils;
-
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.project.earthquake.earthquakewebapplication.EarthquakeEntity;
+import com.project.earthquake.earthquakewebapplication.service.EarthquakeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Map;
+import java.util.List;
 
 @RestController
-public class EarthquakeController {
-    @GetMapping("/")
-    public ResponseEntity<Map<String, Object>> getRadarData() throws IOException {
-        ClassPathResource staticDataResource = new ClassPathResource("application.json");
-        String staticDataString = IOUtils.toString(staticDataResource.getInputStream(), StandardCharsets.UTF_8);
+public class EarthquakeController   {
+    @Autowired
+    private EarthquakeService earthquakeService;
 
-        return new ResponseEntity<>(
-                new JSONObject(staticDataString).toMap(),
-                HttpStatus.OK
-        );
+    @GetMapping("/")
+    public List<EarthquakeEntity> getEarthquakeData() throws IOException {
+        return earthquakeService.getEarthquakeData();
+    }
+
+    @RequestMapping(value="/earthquakes", method= RequestMethod.GET)
+    public String getEarthquakes(Model model) throws IOException {
+        model.addAttribute("earthquakes", getEarthquakeData());
+        return "earthquakes" ;
     }
 }

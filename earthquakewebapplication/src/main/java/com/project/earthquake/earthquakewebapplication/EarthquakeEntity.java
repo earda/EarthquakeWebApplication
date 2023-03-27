@@ -11,8 +11,6 @@ public class EarthquakeEntity {
     private  String location;
     @JsonProperty
     private  String magnitude;
-    @JsonProperty
-    private String date;
 
     @JsonProperty
     private Date time;
@@ -21,11 +19,10 @@ public class EarthquakeEntity {
     }
 
 
-    public EarthquakeEntity(String country, String location, String magnitude, String date, Date time) {
+    public EarthquakeEntity(String country, String location, String magnitude, Date time) {
         this.country = country;
         this.location = location;
         this.magnitude = magnitude;
-        this.date = date;
         this.time = time;
     }
 
@@ -43,14 +40,6 @@ public class EarthquakeEntity {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date ;
     }
 
     public Date getTime() {

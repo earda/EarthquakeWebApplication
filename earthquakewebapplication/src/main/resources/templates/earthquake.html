@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <title>Earthquake Data</title>
+    <title>Earthquake</title>
 </head>
 <body>
-<h1>Recent Earthquakes</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Location</th>
-        <th>Country</th>
-        <th>Magnitude</th>
-        <th>Time</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="earthquake : ${earthquakes}">
-        <td th:text="${earthquake.location}" />
-        <td th:text="${earthquake.country}" />
-        <td th:text="${earthquake.magnitude}" />
-        <td th:text="${earthquake.time}" />
-    </tr>
-    </tbody>
-</table>
+<h1>Earthquake Data</h1>
+<form method="post" action="/resultsPage">
+    <label for="startTime">Start Time:</label>
+    <input type="text" id="startTime" name="startTime"><br>
+
+    <label for="endTime">End Time:</label>
+    <input type="text" id="endTime" name="endTime"><br>
+
+    <label for="minLatitude">Min Latitude:</label>
+    <input type="text" id="minLatitude" name="minLatitude" value="35.8167"><br>
+
+    <label for="maxLatitude">Max Latitude:</label>
+    <input type="text" id="maxLatitude" name="maxLatitude" value="42.1000"><br>
+
+    <label for="minLongitude">Min Longitude:</label>
+    <input type="text" id="minLongitude" name="minLongitude" value="25.6667"><br>
+
+    <label for="maxLongitude">Max Longitude:</label>
+    <input type="text" id="maxLongitude" name="maxLongitude" value="44.8333"><br>
+
+    <input type="submit" value="Submit">
+</form>
 </body>
 </html>

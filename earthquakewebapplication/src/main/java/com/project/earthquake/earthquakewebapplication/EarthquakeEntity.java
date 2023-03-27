@@ -2,6 +2,8 @@ package com.project.earthquake.earthquakewebapplication;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Date;
+
 public class EarthquakeEntity {
     @JsonProperty
     private  String country;
@@ -13,13 +15,13 @@ public class EarthquakeEntity {
     private String date;
 
     @JsonProperty
-    private String time;
+    private Date time;
 
     public EarthquakeEntity() {
     }
 
 
-    public EarthquakeEntity(String country, String location, String magnitude, String date, String time) {
+    public EarthquakeEntity(String country, String location, String magnitude, String date, Date time) {
         this.country = country;
         this.location = location;
         this.magnitude = magnitude;
@@ -51,11 +53,11 @@ public class EarthquakeEntity {
         this.date = date ;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
     public String getMagnitude() {

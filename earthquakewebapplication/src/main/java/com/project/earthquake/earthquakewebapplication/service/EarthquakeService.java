@@ -23,7 +23,7 @@ public class EarthquakeService {
 
     public List<EarthquakeEntity> getEarthquakeData(String startTime, String endTime, String minLatitude, String maxLatitude, String minLongitude, String maxLongitude) throws IOException, ParseException {
         String url = earthquake_URL + String.format("?format=geojson&starttime=%s&endtime=%s",startTime,endTime);
-        if(!StringUtils.isEmpty(minLatitude)){
+        if(!StringUtils.isEmpty(minLatitude)){ //it is not mandatory to enter location information
             url += String.format("&minlatitude=%s",minLatitude);
         }
         if(!StringUtils.isEmpty(maxLatitude)){
@@ -36,7 +36,7 @@ public class EarthquakeService {
             url += String.format("&maxlongitude=%s",maxLongitude);
         }
         url += "&limit=10";
-        System.out.println(url);
+//        System.out.println(url);
         String response = restTemp.getForObject(url, String.class);
         JsonNode rootNode = objectMap.readTree(response);
         JsonNode featureNode = rootNode.path("features");
@@ -48,9 +48,9 @@ public class EarthquakeService {
             String magnitude = propertiesNode.path("mag").asText().split(", ")[0];
             String date = propertiesNode.path("time").asText().split(", ")[0];
            //Date dateDeneme = formatter.parse(date);
-            Instant dateDeneme = Instant.ofEpochMilli(Long.parseLong(date));
-            System.out.print(dateDeneme);
-            Date time = Date.from(dateDeneme);
+            Instant dateFormatted = Instant.ofEpochMilli(Long.parseLong(date));
+            System.out.print(dateFormatted);
+            Date time = Date.from(dateFormatted);
             EarthquakeEntity earthquakeEntity = new EarthquakeEntity(country, location,magnitude,time);
             earthquakes.add(earthquakeEntity);
         }

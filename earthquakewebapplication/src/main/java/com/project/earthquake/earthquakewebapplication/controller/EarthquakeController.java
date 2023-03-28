@@ -20,13 +20,13 @@ public class EarthquakeController {
     @Autowired
     private EarthquakeService earthquakeService;
 
-    @GetMapping("/earthquake")
+    @GetMapping("/earthquake")//getting date and location info
     public String showEarthquakeForm(Model model) {
         model.addAttribute("earthquakeForm", new EarthquakeRequest());
         return "earthquake";
     }
 
-    @PostMapping("/resultsPage")
+    @PostMapping("/resultsPage")//posting date and location info to resultspage
     public String submitEarthquakeForm(@ModelAttribute("earthquakeForm") EarthquakeRequest earthquakeForm, Model model) throws IOException, ParseException {
         String startTime = earthquakeForm.getStartTime();
         String endTime = earthquakeForm.getEndTime();
@@ -35,11 +35,19 @@ public class EarthquakeController {
         String minLongitude = earthquakeForm.getMinLongitude();
         String maxLongitude = earthquakeForm.getMaxLongitude();
         List<EarthquakeEntity> earthquakes = earthquakeService.getEarthquakeData(startTime,endTime,minLatitude,maxLatitude,minLongitude,maxLongitude);
-        if(earthquakes.size() > 0){
-            model.addAttribute("earthquakes", earthquakes);
-        }
+
+        CheckRecordSize(earthquakes,model);
 
         return "resultsPage";
+    }
+
+    public void CheckRecordSize(List<EarthquakeEntity> earthquakes,Model model){
+        String warnings = "There is no records.";
+        if(earthquakes.size() > 0){
+            model.addAttribute("earthquakes", earthquakes);
+        }else{
+            model.addAttribute("warnings", warnings);
+        }
     }
 }
 

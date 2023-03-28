@@ -1,23 +1,31 @@
-<!-- results.html -->
+<!-- resultsPage.html -->
+<html>
+<body>
 <table>
     <tbody>
-    <thead>
-        <tr>
-            <th>Country</th>
-            <th>Location</th>
-            <th>Magnitude</th>
-            <th>Time</th>
-        </tr>
-    </thead>
-    <tr th:each="earthquake : ${earthquakes}">
-        <td th:text="${earthquake.country}"></td>
-        <td th:text="${earthquake.location}"></td>
-        <td th:text="${earthquake.magnitude}"></td>
-        <td th:text="${earthquake.time}"></td>
-    </tr>
+        <thead>
+            <tr th:if="${earthquakes != null and not #lists.isEmpty(earthquakes)}">
+                <th>Country</th>
+                <th>Location</th>
+                <th>Magnitude</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+            <tr th:each="earthquake : ${earthquakes}">
+                <td th:text="${earthquake.country}"></td>
+                <td th:text="${earthquake.location}"></td>
+                <td th:text="${earthquake.magnitude}"></td>
+                <td th:text="${earthquake.time}"></td>
+            </tr>
     </tbody>
-    <a href="/earthquake">Input New Time Range</a>
+
     <tr th:each="warning : ${warnings}">
         <p style="color: red;font-size: 34px" th:text="${warning}"></p>
     </tr>
+
 </table>
+<tr><a href="/earthquake">Input New Earthquake Search Information</a></tr>
+
+</body>
+</html>
+

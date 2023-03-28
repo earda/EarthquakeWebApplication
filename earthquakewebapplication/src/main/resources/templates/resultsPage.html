@@ -6,14 +6,12 @@
         <thead>
             <tr th:if="${earthquakes != null and not #lists.isEmpty(earthquakes)}">
                 <th>Country</th>
-                <th>Location</th>
                 <th>Magnitude</th>
                 <th>Time</th>
             </tr>
         </thead>
             <tr th:each="earthquake : ${earthquakes}">
                 <td th:text="${earthquake.country}"></td>
-                <td th:text="${earthquake.location}"></td>
                 <td th:text="${earthquake.magnitude}"></td>
                 <td th:text="${earthquake.time}"></td>
             </tr>

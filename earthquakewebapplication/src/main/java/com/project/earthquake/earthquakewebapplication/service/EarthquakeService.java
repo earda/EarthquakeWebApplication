@@ -43,15 +43,14 @@ public class EarthquakeService {
         List<EarthquakeEntity> earthquakes = new ArrayList<>();
         for (JsonNode featuresNode : featureNode) {
             JsonNode propertiesNode = featuresNode.path("properties");
-            String country = propertiesNode.path("place").asText().split(", ")[1];
-            String location = propertiesNode.path("place").asText().split(", ")[0];
+            String country = propertiesNode.path("place").asText().split(", ")[0];
             String magnitude = propertiesNode.path("mag").asText().split(", ")[0];
             String date = propertiesNode.path("time").asText().split(", ")[0];
            //Date dateDeneme = formatter.parse(date);
             Instant dateFormatted = Instant.ofEpochMilli(Long.parseLong(date));
             System.out.print(dateFormatted);
             Date time = Date.from(dateFormatted);
-            EarthquakeEntity earthquakeEntity = new EarthquakeEntity(country, location,magnitude,time);
+            EarthquakeEntity earthquakeEntity = new EarthquakeEntity(country,magnitude,time);
             earthquakes.add(earthquakeEntity);
         }
         return earthquakes;
